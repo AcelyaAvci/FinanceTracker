@@ -1,10 +1,11 @@
 {
     "gelirler": [
-        2500.0,
-        2500.0
+        {
+            "miktar": 5000.0,
+            "kategori": "Maa\u015f",
+            "aciklama": "Temmuz maa\u015f\u0131",
+            "tarih": "08.07.2026"
+        }
     ],
-    "giderler": [
-        400.0,
-        400.0
-    ]
+    "giderler": []
 }

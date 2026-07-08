@@ -1,5 +1,6 @@
 import json
 import os
+from datetime import datetime
 
 print("=" * 35)
 print("💰 Finance Tracker")
@@ -42,14 +43,46 @@ def menu():
 
 def gelir_ekle():
     miktar = float(input("Gelir miktarını girin: "))
-    gelirler.append(miktar)
+
+    if miktar <= 0:
+        print("❌ Geçersiz tutar. Lütfen 0'dan büyük bir sayı girin.")
+        return
+
+    kategori = input("Kategori girin: ")
+    aciklama = input("Açıklama girin: ")
+    tarih = datetime.now().strftime("%d.%m.%Y")
+
+    gelir = {
+        "miktar": miktar,
+        "kategori": kategori,
+        "aciklama": aciklama,
+        "tarih": tarih
+    }
+
+    gelirler.append(gelir)
     verileri_kaydet()
     print(f"{miktar} TL gelir eklendi.")
 
 
 def gider_ekle():
     miktar = float(input("Gider miktarını girin: "))
-    giderler.append(miktar)
+
+    if miktar <= 0:
+        print("❌ Geçersiz tutar. Lütfen 0'dan büyük bir sayı girin.")
+        return
+
+    kategori = input("Kategori girin: ")
+    aciklama = input("Açıklama girin: ")
+    tarih = datetime.now().strftime("%d.%m.%Y")
+
+    gider = {
+        "miktar": miktar,
+        "kategori": kategori,
+        "aciklama": aciklama,
+        "tarih": tarih
+    }
+
+    giderler.append(gider)
     verileri_kaydet()
     print(f"{miktar} TL gider eklendi.")
 
@@ -57,21 +90,28 @@ def gider_ekle():
 def islemleri_goster():
     print("\n📋 Gelirler")
 
-    for i, gelir in enumerate(gelirler, start=1):
-        print(f"{i}. {gelir} TL")
+    if len(gelirler) == 0:
+        print("Henüz gelir eklenmedi.")
+    else:
+        for i, gelir in enumerate(gelirler, start=1):
+            print(f"{i}. {gelir['kategori']} | {gelir['miktar']} TL | {gelir['aciklama']} | {gelir['tarih']}")
 
     print("\n📋 Giderler")
-    for i, gider in enumerate(giderler, start=1):
-         print(f"{i}. {gider} TL")
-        
-    print("-" * 30)
-    print(f"Toplam Gelir : {sum(gelirler)} TL")
-    print(f"Toplam Gider : {sum(giderler)} TL")
+
+    if len(giderler) == 0:
+        print("Henüz gider eklenmedi.")
+    else:
+        for i, gider in enumerate(giderler, start=1):
+            print(f"{i}. {gider['kategori']} | {gider['miktar']} TL | {gider['aciklama']} | {gider['tarih']}")
+
+    print("-" * 50)
+    print(f"Toplam Gelir : {sum(gelir['miktar'] for gelir in gelirler)} TL")
+    print(f"Toplam Gider : {sum(gider['miktar'] for gider in giderler)} TL")
 
 
 def bakiyeyi_goster():
-    toplam_gelir = sum(gelirler)
-    toplam_gider = sum(giderler)
+    toplam_gelir = sum(gelir["miktar"] for gelir in gelirler)
+    toplam_gider = sum(gider["miktar"] for gider in giderler)
     bakiye = toplam_gelir - toplam_gider
 
     print("\n💰 Bakiye Bilgisi")
@@ -90,14 +130,14 @@ def islem_sil():
         print("\nGelirler:")
 
         for i, gelir in enumerate(gelirler, start=1):
-            print(f"{i}. {gelir} TL")
+            print(f"{i}. {gelir['kategori']} | {gelir['miktar']} TL")
 
         sil = int(input("Silmek istediğiniz gelir numarası: "))
 
         if 1 <= sil <= len(gelirler):
             silinen = gelirler.pop(sil - 1)
             verileri_kaydet()
-            print(f"{silinen} TL gelir silindi.")
+            print(f"{silinen['miktar']} TL gelir silindi.")
         else:
             print("Geçersiz numara.")
 
@@ -105,14 +145,14 @@ def islem_sil():
         print("\nGiderler:")
 
         for i, gider in enumerate(giderler, start=1):
-            print(f"{i}. {gider} TL")
+            print(f"{i}. {gider['kategori']} | {gider['miktar']} TL")
 
         sil = int(input("Silmek istediğiniz gider numarası: "))
 
         if 1 <= sil <= len(giderler):
             silinen = giderler.pop(sil - 1)
             verileri_kaydet()
-            print(f"{silinen} TL gider silindi.")
+            print(f"{silinen['miktar']} TL gider silindi.")
         else:
             print("Geçersiz numara.")
 
