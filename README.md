@@ -1,8 +1,8 @@
 # 💰 Finance Tracker
 
-A simple terminal-based Finance Tracker application developed with Python.
+A modern terminal-based finance management application developed with Python.
 
-This project allows users to manage their personal income and expenses through an interactive menu.
+Finance Tracker allows users to manage their personal income and expenses, store transactions permanently using JSON, and easily monitor their financial balance.
 
 ---
 
@@ -10,11 +10,15 @@ This project allows users to manage their personal income and expenses through a
 
 - ➕ Add income
 - ➖ Add expenses
+- 📂 Automatic data saving with JSON
+- 📂 Automatic data loading
 - 📋 View all transactions
-- 💰 Calculate current balance
+- 💰 Show current balance
 - 🗑 Delete transactions
-- 💾 Automatic data saving (JSON)
-- 📂 Automatic data loading when the application starts
+- 🏷 Transaction categories
+- 📝 Transaction descriptions
+- 📅 Automatic date recording
+- ✅ Input validation (prevents invalid amounts)
 
 ---
 
@@ -24,13 +28,15 @@ This project allows users to manage their personal income and expenses through a
 - JSON
 - File Handling
 - Functions
+- Dictionaries
 - Lists
 - Loops
 - Conditional Statements
+- Datetime Module
 
 ---
 
-## 📸 Preview
+## 📸 Example
 
 ```text
 ===== Finance Tracker =====
@@ -43,9 +49,32 @@ This project allows users to manage their personal income and expenses through a
 6. Exit
 ```
 
+Example transaction:
+
+Income
+----------------------------------------
+Category : Salary
+Amount   : 5000 TL
+Note     : July Salary
+Date     : 08.07.2026
+```
+
 ---
 
-## 🚀 Getting Started
+## 📂 Project Structure
+
+```
+Finance Tracker/
+│
+├── main.py
+├── veriler.json
+├── README.md
+└── .gitignore
+```
+
+---
+
+## 🚀 Installation
 
 Clone the repository
 
@@ -53,7 +82,13 @@ Clone the repository
 git clone https://github.com/AcelyaAvci/Finance-Tracker.git
 ```
 
-Run the application
+Go into the project folder
+
+```bash
+cd Finance-Tracker
+```
+
+Run
 
 ```bash
 python main.py
@@ -61,26 +96,15 @@ python main.py
 
 ---
 
-## 📁 Project Structure
-
-```
-Finance Tracker/
-│
-├── main.py
-├── veriler.json
-└── README.md
-```
-
----
-
 ## 🎯 Future Improvements
 
-- Categories for transactions
 - Monthly reports
-- Search feature
+- Search transactions
 - Export to Excel
+- Charts & Statistics
+- User accounts
+- SQLite database
 - Graphical User Interface (Tkinter)
-- Charts and statistics
 
 ---
 
